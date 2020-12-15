@@ -7,6 +7,8 @@ alias d='cd ~/d/'
 alias n='cd ~/notes/'
 alias p='cd ~/pnotes'
 alias .='cd ~/dotfiles;'
+alias v='~/nvim-osx64/bin/nvim'
+alias nvim='~/nvim-osx64/bin/nvim'
 
 alias mk=mk
 function mk() { mkdir $1; cd $1; }
@@ -42,17 +44,25 @@ alias tkw='tmux kill-server'
 alias g='git'
 alias ga='git add'
 alias ga.='git add .'
+alias gs='git status'
+
+# git diff
+alias gd='git diff'
+alias gd@='git diff @'
+
+# git commit
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gca='git commit --am'
+
+# git other
 alias gch='git checkout'
 alias gac='git add . && git commit -am'
 alias gp='git push'
 alias gf='git fetch'
 alias gb='git branch'
-alias gd='git diff'
-alias gd%='git diff%'
-alias gst='git status'
+
+# git log
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias gll='git log --graph --oneline --decorate --all'
 

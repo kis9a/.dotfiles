@@ -35,6 +35,7 @@ set viminfo="NONE"
 set switchbuf+=newtab
 let mapleader="\<Space>"
 let maplocalleader="\,"
+let g:netrw_browsex_viewer="open"
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 let g:loaded_netrwSettings = 1
@@ -65,8 +66,8 @@ nnoremap <CR> A<CR><ESC>
 nnoremap == gg=G''
 nnoremap <C-]> g<C-]>zz
 nnoremap <C-]> <ESC>g<C-]>
-nnoremap <Leader>- :sp<CR>
-nnoremap <Leader>\ :vsp<CR>
+nnoremap g- :sp<CR>
+nnoremap g\ :vsp<CR>
 nnoremap <Leader>rl :so %<CR>
 nnoremap <C-c> :bd<cr>
 nnoremap <C-q> :q!<cr>
@@ -85,11 +86,11 @@ nnoremap <Leader>j :tabnew<CR>:e $TASK<CR>
 nnoremap <Leader>d :tabnew<CR>:e $MYVIMRC<CR>
 nnoremap <Leader>b :tabnew<CR>:e $BOOKMARKS<CR>
 "" vimtab
-nnoremap <Leader>1 1gt
-nnoremap <Leader>2 2gt
-nnoremap <Leader>3 3gt
-nnoremap <Leader>4 4gt
-nnoremap <Leader>5 5gt
+nnoremap g1 1gt
+nnoremap g2 2gt
+nnoremap g3 3gt
+nnoremap g4 4gt
+nnoremap g5 5gt
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-w>d :tabclose<CR>

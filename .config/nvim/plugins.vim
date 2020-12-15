@@ -25,7 +25,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
-  Plug 'tyru/caw.vim'
   Plug 'alvan/vim-closetag', { 'for': ['html', 'jsx', 'tsx', 'vue', 'markdown'] }
   Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
@@ -38,6 +37,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
   Plug 't9md/vim-quickhl'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+  Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-s)' }
 
   " color
   Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -47,15 +47,18 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-markdown', { 'for': 'markdown' }
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
+  Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+  Plug 'scrooloose/vim-slumlord', { 'for': 'uml' }
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   " javascript/typescript
-  Plug 'yuezk/vim-js', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
-  Plug 'maxmellon/vim-jsx-pretty', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
-  Plug 'posva/vim-vue', { 'for': 'vue' }
-  Plug 'pangloss/vim-javascript', { 'for': ['js', 'jsx', 'ts', 'tsx'] }
-  Plug 'leafgarland/typescript-vim', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
-  Plug 'othree/yajs.vim', { 'for': ['js', 'jsx', 'ts', 'tsx'] }
-  Plug 'HerringtonDarkholme/yats.vim', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " Plug 'yuezk/vim-js', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " Plug 'maxmellon/vim-jsx-pretty', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " Plug 'posva/vim-vue', { 'for': 'vue' }
+  " Plug 'pangloss/vim-javascript', { 'for': ['js', 'jsx', 'ts', 'tsx'] }
+  " Plug 'leafgarland/typescript-vim', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " Plug 'othree/yajs.vim', { 'for': ['js', 'jsx', 'ts', 'tsx'] }
+  " Plug 'HerringtonDarkholme/yats.vim', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
 
   " golang
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
@@ -71,13 +74,6 @@ call plug#begin('~/.config/nvim/plugged')
   " vim
   Plug 'tbastos/vim-lua', { 'for': 'lua' }
 
-  " rlang
-  Plug 'jalvesaq/Nvim-R', { 'for': 'r' }
-  Plug 'gaalcaras/ncm-R', { 'for': 'r' }
-  Plug 'vim-pandoc/vim-pandoc', { 'for': 'rmd' }
-  Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'rmd'}
-  Plug 'vim-pandoc/vim-rmarkdown', { 'for': 'rmd' }
-
   " clang
   Plug 'justmao945/vim-clang', { 'for': 'c' }
 call plug#end()
@@ -88,33 +84,44 @@ highlight QuickScopeSecondary guifg='#8ec07c' gui=underline ctermfg=108 cterm=un
 highlight CocExplorerNormalFloat ctermbg=black
 highlight CocExplorerNormalFloatBorder ctermbg=black guifg=black
 
+" --- function ---
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
 " --- plugin mapping
-nnoremap <Leader>e :WinResizerStartResize<CR>
-nnoremap <Leader>gr :Grepper<CR>
-nnoremap <Leader>gc :Grepper-cd 
-nnoremap <silent> <Leader>mm :SignatureListGlobalMarks<CR>
-nnoremap <silent> <Leader>mg :Magit<CR>
-nnoremap <silent> <C-p> :GFiles!<CR>
-nnoremap <silent> sp :Commands!<CR>
-nnoremap <silent> sf :Files!<CR>
-nnoremap <silent> sm :Marks!<CR>
-nnoremap <silent> sg :Rg!<CR>
-nnoremap <silent> sj :Buffers!<CR>
-nnoremap <silent> sl :Lines!<CR>
-nnoremap <silent> sc :Commits!<CR>
-nnoremap <silent> s: :CocCommand<CR>
-nnoremap <silent> <Leader>n :CocCommand explorer --sources=buffer+,file+ --width=60<CR>
-nnoremap <silent> <C-n> :CocCommand explorer --sources=buffer+,file+ --position=floating --floating-width=400 --floating-height=200<CR>
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> s; :<C-u>CocList<cr>
-nnoremap <silent> <Leader>u :UndotreeToggle<CR>
-nmap <silent> sd <Plug>(coc-definition)
-nmap <silent> sq <Plug>(coc-fix-current)
-nmap <silent> st <Plug>(coc-type-definition)
-nmap <silent> sh <Plug>(coc-references)
-nmap <silent> sr <Plug>(coc-rename)
-nmap <silent> sk <Plug>(coc-format)
-" vnoremap gc :Commentary<CR>
+nnoremap <silent> ge :WinResizerStartResize<CR>
+nnoremap <silent>gr :Grepper<CR>
+nnoremap <silent>gc :Grepper-cd 
+nnoremap <silent>gm :SignatureListGlobalMarks<CR>
+nnoremap <silent>ga :Magit<CR>
+nnoremap <silent><C-p> :GFiles!<CR>
+nnoremap <silent>sp :Commands!<CR>
+nnoremap <silent>sf :Files!<CR>
+nnoremap <silent>sm :Marks!<CR>
+nnoremap <silent>sg :Rg!<CR>
+nnoremap <silent>sj :Buffers!<CR>
+nnoremap <silent>sl :Lines!<CR>
+nnoremap <silent>sc :Commits!<CR>
+nnoremap <silent>s: :CocCommand<CR>
+nnoremap <silent>sn :CocCommand explorer --sources=buffer+,file+ --width=60<CR>
+nnoremap <silent><C-n> :CocCommand explorer --sources=buffer+,file+ --position=floating --floating-width=400 --floating-height=200<CR>
+nnoremap <silent>s; :<C-u>CocList<cr>
+nnoremap <silent>K :call <SID>show_documentation()<CR>
+nnoremap <silent>su :UndotreeToggle<CR>
+nmap sd <Plug>(coc-definition)
+nmap sq <Plug>(coc-fix-current)
+nmap st <Plug>(coc-type-definition)
+nmap sh <Plug>(coc-references)
+nmap sr <Plug>(coc-rename)
+nmap sk <Plug>(coc-format)
+vnoremap gc :Commentary<CR>
 nnorema <Leader>gn :Gina 
 nmap <Leader>h <Plug>(quickhl-manual-this)
 xmap <Leader>h <Plug>(quickhl-manual-this)
@@ -125,27 +132,7 @@ vmap <silent> <Leader>t <Plug>TranslateV
 nmap <silent> <Leader>w <Plug>TranslateW
 vmap <silent> <Leader>w <Plug>TranslateWV
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-
-" press <esc> to cancel.
-nmap <LocalLeader>f <Plug>(coc-smartf-forward)
-nmap <LocalLeader>F <Plug>(coc-smartf-backward)
-nmap <LocalLeader>; <Plug>(coc-smartf-repeat)
-nmap <LocalLeader>, <Plug>(coc-smartf-repeat-opposite)
-
-augroup Smartf
-  autocmd User SmartfEnter :hi Conceal ctermfg=226 gui=bold guifg=#cc241d guibg=NONE
-  autocmd User SmartfLeave :hi Conceal ctermfg=226 gui=bold guifg=#cc241d guibg=NONE
-augroup end
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+nmap <LocalLeader> <Leader><Leader>s
 
 " ---- plugin valiables
 let g:undotree_WindowLayout = 2
@@ -199,5 +186,4 @@ let g:coc_global_extensions = [
       \, 'coc-markdownlint'
       \, 'coc-go'
       \, 'coc-tsserver'
-      \, 'coc-smartf'
       \, ]

@@ -42,7 +42,7 @@ dotfiles_deploy() {
         e_newline && e_done "Deploy"
 }
 
-otfiles_initialize() {
+dotfiles_initialize() {
     if [ "$1" = "init" ]; then
         e_newline
         e_header "Initializing dotfiles..."

@@ -39,11 +39,16 @@ module.exports = {
       LC_ALL: "ja_JP.UTF-8",
       TERM: "xterm-256color"
     },
+    opacity: {
+      focus: 0.95,
+      blur: 0.84,
+    },
   },
   plugins: [
     "hyper",
     "hyperminimal",
     "hyperborder",
+    "hyper-opacity"
   ],
   localPlugins: ["gruvbox"],
   keymaps: {},
