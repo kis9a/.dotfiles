@@ -37,7 +37,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
   Plug 't9md/vim-quickhl'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-  Plug 'easymotion/vim-easymotion', { 'on': '<Plug>(easymotion-s)' }
+  Plug 'easymotion/vim-easymotion'
 
   " color
   Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
@@ -45,8 +45,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   " markdown/documentation
   Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-  Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
+  " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+  " Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
   Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
   Plug 'scrooloose/vim-slumlord', { 'for': 'uml' }
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
