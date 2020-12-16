@@ -6,8 +6,13 @@ vim.cmd [[packadd packer.nvim]]
 -- vim._update_package_paths()
 
 return require('packer').startup(function()
-  -- Packer can manage itself as an optional plugin
+  use {'junegunn/fzf', run = './install --all' }
+  use {'junegunn/fzf.vim'} -- Packer can manage itself as an optional plugin
+  use 'tpope/vim-fugitive'
+
   use {'wbthomason/packer.nvim', opt = true}
+  use {'morhetz/gruvbox', opt = true}
+  use {'tpope/vim-commentary'}
 
   -- Simple plugins can be specified as strings
   use '9mm/vim-closer'
