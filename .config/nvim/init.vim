@@ -1,59 +1,5 @@
 lua require 'init'
 
-" --- setting ---
-" set number relativenumber
-" set encoding=UTF-8
-" set hidden
-" set background=dark
-" set cursorline
-" set autoindent
-" set autochdir
-" set tabstop=2
-" set showtabline=2
-" set shiftwidth=2
-" set timeoutlen=1000
-" set ttimeoutlen=0
-" set termguicolors
-" set expandtab
-" set splitright
-" set clipboard=unnamed
-" set clipboard+=unnamedplus
-" set tags=./tags;$HOME
-" set noswapfile
-" set laststatus=2
-" set nobackup
-" set modifiable
-" set regexpengine=1
-" set lazyredraw
-" set noshowcmd
-" set ignorecase
-" set smartcase
-" set noshowmode
-" set noruler
-" set noerrorbells
-" set novisualbell
-" set shada="NONE"
-" set viminfo="NONE"
-" set switchbuf+=newtab
-" let mapleader="\<Space>"
-" let maplocalleader="\,"
-" let g:netrw_browsex_viewer="open"
-" let g:loaded_netrw = 1
-" let g:loaded_netrwPlugin = 1
-" let g:loaded_netrwSettings = 1
-" let g:loaded_netrwFileHandlers  = 1
-" let g:loaded_gzip = 1
-" let g:loaded_tar = 1
-" let g:loaded_tarPlugin = 1
-" let g:loaded_zip = 1
-" let g:loaded_zipPlugin = 1
-" let g:loaded_rrhelper = 1
-" let g:loaded_2html_plugin = 1
-" let g:loaded_vimball = 1
-" let g:loaded_vimballPlugin = 1
-" let g:loaded_getscript = 1
-" let g:loaded_getscriptPlugin = 1
-
 " --- plugins ---
 source ~/.config/nvim/plugins.vim
 

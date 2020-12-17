@@ -31,7 +31,6 @@ alias lsc='cowsay $(ls)'
 
 # vim
 alias v='nvim'
-alias vi='nvim'
 alias j='nvim $TASK'
 
 # tmux

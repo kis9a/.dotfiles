@@ -1,5 +1,7 @@
 require('plugins')
 
+vim.cmd('syntax on')
+
 -- options
 vim.o.encoding = 'UTF-8'
 vim.o.hidden = true
@@ -41,7 +43,7 @@ vim.o.autoindent = true
 vim.bo.autoindent = true
 
 vim.g.mapleader = ' '
-vim.g.localmapleader = ','
+vim.g.maplocalleader = ','
 vim.g.netrw_browsex_viewer = 'open'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -58,5 +60,3 @@ vim.g.loaded_vimball = 1
 vim.g.loaded_vimballPlugin = 1
 vim.g.loaded_getscript = 1
 vim.g.loaded_getscriptPlugin = 1
-
-

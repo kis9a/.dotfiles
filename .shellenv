@@ -6,7 +6,7 @@ export DOTFILES=~/dotfiles
 export BOOKMARKS=~/dotfiles/.config/nvim/bookmarks.md
 export MYVIMRC=~/dotfiles/.config/nvim/init.vim
 export TASK=~/notes/tasks/$(date +%Y)/$(date +%m).md
-export EDITOR=nvim
+export EDITOR=vi
 export KEYTIMEOUT=1
 export HISTSIZE=1000
 export HISTFILE=${HOME}/.zsh_history
@@ -24,4 +24,3 @@ export PATH=$PATH:$GOPATH/bin
 
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-source "$HOME/.cargo/env"
