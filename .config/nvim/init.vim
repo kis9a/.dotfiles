@@ -1,5 +1,8 @@
 lua require 'init'
 
+set noswapfile
+set modifiable
+
 " --- plugins ---
 source ~/.config/nvim/plugins.vim
 

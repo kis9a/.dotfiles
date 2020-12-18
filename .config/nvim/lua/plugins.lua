@@ -35,11 +35,15 @@ return require('packer').startup(function()
   use { 'iamcco/mathjax-support-for-mkdp', opt = true, ft = { 'markdown' } }
   use { 'aklt/plantuml-syntax', opt = true, ft = { 'uml' } }
   use { 'scrooloose/vim-slumlord', opt = true, ft = { 'uml' } }
-  use { "nvim-treesitter/nvim-treesitter", opt = true, requires = {'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'} }
   use { 'fatih/vim-go', opt = true, ft = { 'go' } }
   use { 'rust-lang/rust.vim', opt = true, ft = { 'rust' } }
   use { 'cespare/vim-toml', opt = true, ft = { 'toml' } }
   use { 'jparise/vim-graphql', opt = true, ft = { 'graphql' } }
   use { 'towolf/vim-helm', opt = true, ft = { 'helm' } }
   use { 'tbastos/vim-lua', opt = true, ft = { 'lua' } }
+  use { 'posva/vim-vue', opt = true, ft = { 'vue' } }
+  use { 'leafgarland/typescript-vim', opt = true, ft = { 'js', 'ts', 'jsx', 'tsx' }}
+  use { 'othree/yajs.vim', opt = true, ft = { 'js', 'ts', 'jsx', 'tsx' }}
+  use { 'HerringtonDarkholme/yats.vim', opt = true, ft = { 'js', 'ts', 'jsx', 'tsx' } }
+  use { 'justmao945/vim-clang', opt = true, ft = { 'c' } }
 end)

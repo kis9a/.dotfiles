@@ -15,7 +15,6 @@ vim.o.splitright = true
 vim.o.clipboard='unnamed'
 vim.o.laststatus = 2
 vim.o.backup = false
-vim.o.modifiable = false
 vim.o.regexpengine = 1
 vim.o.lazyredraw = true
 vim.o.showtabline = 2
