@@ -1,5 +1,6 @@
 brew "cask"
 cask "docker"
+cask "keycastr"
 cask "visual-studio-code"
 cask "zoomus"
 cask "postman"

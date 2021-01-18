@@ -16,15 +16,18 @@ alias ....='cd ../../..'
 
 alias earth="curl -s http://artscene.textfiles.com/vt100/movglobe.vt | pv -q -L 9600"
 alias timepv="for (( i = 1 ; i <= 100 ; i++ )); do sleep 1; echo $i; done | (>&2 echo -en "\r"; pv --progress --line-mode --size 100 --eta --timer)"
-alias tree='tree -a -I ".svn|.git|.hg|.idea"'
-alias tree2='tree -L 2'
-alias tree3='tree -L 3'
+alias l='tree -C -L 1 -h'
+alias la='tree -a -C -h -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
+alias l2='tree -a -C -h -L 2 -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
+alias l3='tree -a -C -h -L 3 -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
 
+# > tree -C -L 1 -h
 alias rmi='rm -i'
 alias rmf='rm -fr'
 alias sl='ls -lahGpt'
 alias lsg='ls | fzf | pbcopy'
 alias lsc='cowsay $(ls)'
+alias lf='lsd -a'
 
 alias t='tmux -u new -s $(basename `pwd`)'
 alias ta='tmux a'
@@ -42,7 +45,8 @@ alias path='echo $PATH | tr ":" "\n"'
 alias tzsh='time  zsh -i -c exit'
 alias te='trans {en=ja}'
 alias tj='trans {ja=en}'
-alias yd='youtube-dl -f 22'
+alias yd='youtube-dl -f 22 -ciw --restrict-filenames'
+alias ydd='youtube-dl -f 22 -ciw --extract-audio --audio-format mp3 --restrict-filenames'
 alias lofi="mpv --shuffle $LOFI"
 alias lofir="mpv 'https://www.youtube.com/watch?v=5qap5aO4i9A&ab_channel=ChilledCow' --no-video"
 alias jj='aws s3 sync $TASKS s3://kis9atask --size-only'

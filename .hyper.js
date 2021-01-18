@@ -30,8 +30,8 @@ module.exports = {
     macOptionSelectionMode: 'vertical',
     webGLRenderer: true,
     env: {
-      LANG: "ja_JP.UTF-8",
-      LC_ALL: "ja_JP.UTF-8",
+      LANG: "en_US.UTF-8",
+      LC_ALL: "en_US.UTF-8",
       TERM: "xterm-256color"
     },
   },

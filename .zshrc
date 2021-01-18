@@ -52,6 +52,7 @@ PROMPT='%F{142}< %~%f${vcs_info_msg_0_} %F{142}>%f '
 # bindkey
 bindkey -v
 bindkey -s '^v' 'nvim .^M'
+bindkey -M viins '^K'  backward-kill-line
 bindkey '^F' autosuggest-accept
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
