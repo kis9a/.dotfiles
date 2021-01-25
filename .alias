@@ -16,18 +16,16 @@ alias ....='cd ../../..'
 
 alias earth="curl -s http://artscene.textfiles.com/vt100/movglobe.vt | pv -q -L 9600"
 alias timepv="for (( i = 1 ; i <= 100 ; i++ )); do sleep 1; echo $i; done | (>&2 echo -en "\r"; pv --progress --line-mode --size 100 --eta --timer)"
-alias l='tree -C -L 1 -h'
 alias la='tree -a -C -h -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
 alias l2='tree -a -C -h -L 2 -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
 alias l3='tree -a -C -h -L 3 -I "\.DS_Store|\.git|node_modules|vendor\/bundle" -N'
 
-# > tree -C -L 1 -h
 alias rmi='rm -i'
 alias rmf='rm -fr'
 alias sl='ls -lahGpt'
 alias lsg='ls | fzf | pbcopy'
-alias lsc='cowsay $(ls)'
-alias lf='lsd -a'
+alias lexa -lhasc='cowsay $(ls)'
+alias j='exa -lha --git'
 
 alias t='tmux -u new -s $(basename `pwd`)'
 alias ta='tmux a'
@@ -41,12 +39,13 @@ alias ffgif2mp4='ls *.gif | fzf -m --prompt="gif2mp4" | xargs -I {} ffmpeg -y -i
 
 alias pp=pbpaste
 alias mem="top -l 1 | grep Mem"
+alias memr="sudo purge"
 alias path='echo $PATH | tr ":" "\n"'
 alias tzsh='time  zsh -i -c exit'
 alias te='trans {en=ja}'
 alias tj='trans {ja=en}'
-alias yd='youtube-dl -f 22 -ciw --restrict-filenames'
-alias ydd='youtube-dl -f 22 -ciw --extract-audio --audio-format mp3 --restrict-filenames'
+alias yd='youtube-dl -ciw --restrict-filenames'
+alias ydd='youtube-dl -ciw --extract-audio --audio-format mp3 --restrict-filenames'
 alias lofi="mpv --shuffle $LOFI"
 alias lofir="mpv 'https://www.youtube.com/watch?v=5qap5aO4i9A&ab_channel=ChilledCow' --no-video"
 alias jj='aws s3 sync $TASKS s3://kis9atask --size-only'
@@ -108,15 +107,28 @@ function search_zenn () {
    open "https://zenn.dev/search?q=$1"
 }
 
+function colors() {
+  for i in {0..255}
+  do
+      print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}
+  done
+}
+
+function bdiff() {
+  git diff --name-only --diff-filter=d | xargs bat --diff
+}
+
 # global alias
 alias -g A='| awk'
 alias -g C='| pbcopy'
 alias -g G='| grep --color=auto'
 alias -g H='| head'
 alias -g L='| less -R'
+alias -g B='| bat'
 alias -g X='| xargs'
 alias -g C='| pbcopy'
 alias -g F='| fzf'
+alias -g N='| nvim -'
 alias -g P='| curl -T - https://ppng.io/kis9a'
 alias -g cpjson="-XPOST -H 'Content-Type: application/json' -d '{}'"
 alias -g cptext="-XPOST -H 'Content-Type: text/plain' -d"

@@ -9,11 +9,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim', { 'on': [ 'Files', 'GFiles', 'Commands', 'Commits', 'Rg', 'Buffers', 'Maps', 'Marks' ] }
-Plug 'junegunn/limelight.vim', { 'on': [ 'Limelight', 'Limelight!', 'Limelight!!' ] }
-" junegunn/limelight.vim {{{
-nnoremap <silent> <Leader>l :Limelight!!<CR>
-"}}}
-Plug 'junegunn/vim-easy-align'
 " junegunn/fzf {{{
 nnoremap <silent><C-p> :GFiles<CR>
 nnoremap <silent>gdi :Gdiffsplit@<CR>
@@ -48,6 +43,7 @@ let g:coc_global_extensions = [
       \, 'coc-vimlsp'
       \, 'coc-tsserver'
       \, 'coc-vetur'
+      \, 'coc-markdownlint'
       \, 'coc-react-refactor'
       \, ]
 
@@ -81,6 +77,21 @@ function! s:show_documentation()
   endif
 endfunction
 "}}}
+Plug 'junegunn/limelight.vim', { 'on': [ 'Limelight', 'Limelight!', 'Limelight!!' ] }
+" junegunn/limelight.vim {{{
+nnoremap <silent> <Leader>m :Limelight!!<CR>
+"}}}
+Plug 'junegunn/vim-easy-align'
+" junegunn/vim-easy-align {{{
+" =の代わりに使えるその他
+" コマンド	説明
+" =	一致した一つ目の=を基準に整列させる
+" 2=	一致した二つ目の=を基準に整列させる
+" *=	一致した全ての=を基準に整列させる
+" **=	一致した全ての=を基準に左右交互に整列させる
+" Enter	整列させる位置を（左/ 右/ 中央）で切り替える
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)"}}}
 Plug 'dense-analysis/ale'
 " dense-analysis/ale {{{
 
@@ -166,10 +177,6 @@ augroup ALEMappings
   autocmd BufRead,FileType * call ALELSPMappings()
 augroup END
 "}}}
-Plug 'mattn/emmet-vim'
-" mattn/emmet-vim {{{
-let g:user_emmet_leader_key='<c-z>'
-"}}}
 Plug 'Yggdroot/indentLine'
 " Yggdroot/indentLine {{{
 let g:indentLine_faster = 1
@@ -182,18 +189,12 @@ nnoremap <silent> ge :WinResizerStartResize<CR>
 "}}}
 Plug 'tpope/vim-fugitive'
 Plug 'unblevable/quick-scope'
-" unblevable/quick-scope {{{
+" unblevable/quick-scope {{{j
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "}}}
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
 " tpope/vim-commentary {{{
-vnoremap gc :Commentary<CR>
-"}}}
-Plug 'alvan/vim-closetag', { 'for': ['html', 'jsx', 'tsx', 'vue'] }
-" alvan/vim-closetag {{{
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.vue,*,tsx"
+vnoremap <silent> gc :Commentary<CR>
 "}}}
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 " mhinz/vim-grepper {{{
@@ -217,26 +218,14 @@ Plug 'stefandtw/quickfix-reflector.vim', { 'for': 'qf' }
 let g:qf_modifiable = 1
 let g:qf_write_changes = 1
 "}}}
-Plug 'voldikss/vim-translator'
-" voldikss/vim-translator {{{
-let g:translator_target_lang='ja'
-nmap <silent> <Leader>t <Plug>Translate
-vmap <silent> <Leader>t <Plug>TranslateV
-nmap <silent> <Leader>w <Plug>TranslateW
-vmap <silent> <Leader>w <Plug>TranslateWV
-nmap <silent> <Leader>l <Plug>TranslateR
-vmap <silent> <Leader>l <Plug>TranslateRV
-"}}}
-Plug 'dhruvasagar/vim-table-mode'
-" dhruvasagar/vim-table-mode {{{
-let g:table_mode_corner = '|'
-"}}}
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " liuchengxu/vim-which-key {{{
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> , :<c-u>WhichKey ','<CR>
+nnoremap <silent> s :<c-u>WhichKey 's'<CR>
+nnoremap <silent> c :<c-u>WhichKey 'c'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 "}}}
-Plug 'airblade/vim-rooter'
 Plug 't9md/vim-quickhl'
 " t9md/vim-quickhl {{{
 nmap <Leader>h <Plug>(quickhl-manual-this)
@@ -244,18 +233,18 @@ xmap <Leader>h <Plug>(quickhl-manual-this)
 nmap <Leader>H <Plug>(quickhl-manual-reset)
 xmap <Leader>H <Plug>(quickhl-manual-reset)
 "}}}
+Plug 'airblade/vim-rooter'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'yuratomo/w3m.vim', { 'on': 'W3m' }
 Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
 Plug 'cocopon/colorswatch.vim', { 'on': 'ColorSwatchGenerate' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
 " iamcco/mathjax-support-for-mkdp {{{
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_auto_close=0
 let g:mkdp_refresh_slow=1
 "}}}
-Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
-Plug 'scrooloose/vim-slumlord', { 'for': 'uml' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 " fatih/vim-go {{{
@@ -275,6 +264,8 @@ Plug 'tbastos/vim-lua', { 'for': 'lua' }
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 " not usually {{{
 " Plug 'towolf/vim-helm', { 'for': 'helm' }
+" Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+" Plug 'scrooloose/vim-slumlord', { 'for': 'uml' }
 " Plug 'justmao945/vim-clang', { 'for': 'c' }
 " Plug 'idanarye/vim-smile', { 'on': 'Smile' }
 " Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -306,6 +297,30 @@ Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 " Plug 'vim-scripts/dbext.vim'
 " Plug 'tpope/vim-dadbod'
 " Plug 'joshdick/onedark.vim'
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+" Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
+" Plug 'voldikss/vim-translator'
+"" voldikss/vim-translator {{{
+"let g:translator_target_lang='ja'
+"nmap <silent> <Leader>t <Plug>Translate
+"vmap <silent> <Leader>t <Plug>TranslateV
+"nmap <silent> <Leader>w <Plug>TranslateW
+"vmap <silent> <Leader>w <Plug>TranslateWV
+"nmap <silent> <Leader>l <Plug>TranslateR
+"vmap <silent> <Leader>l <Plug>TranslateRV
+""}}}
+" Plug 'mattn/emmet-vim'
+"" mattn/emmet-vim {{{
+"let g:user_emmet_leader_key='<c-z>'
+""}}}
+" Plug 'alvan/vim-closetag', { 'for': ['html', 'jsx', 'tsx', 'vue'] }
+" alvan/vim-closetag {{{
+" let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.vue,*,tsx"
+"}}}
+" Plug 'dhruvasagar/vim-table-mode'
+" dhruvasagar/vim-table-mode {{{
+" let g:table_mode_corner = '|'
+"}}}
 "}}}
 call plug#end()
 
