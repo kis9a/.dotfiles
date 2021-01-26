@@ -4,7 +4,6 @@ set encoding=UTF-8
 set synmaxcol=200
 set redrawtime=10000
 set hidden
-set background=dark
 set cursorline
 set autoindent
 set autochdir
@@ -44,7 +43,22 @@ set virtualedit=block
 let mapleader="\<Space>"
 let maplocalleader="\,"
 let g:netrw_browsex_viewer="open"
-let loaded_netrwPlugin = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_man = 1
+let g:loaded_gzip = 1
+let g:loaded_tar = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
+let g:loaded_rrhelper = 1
+let g:loaded_2html_plugin = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_getscript = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_matchparen = 1
+let g:loaded_shada_plugin = 1
+let g:loaded_tutor_mode_plugin = 1
 "}}}
 
 "  --- plugins --- {{{
@@ -52,9 +66,10 @@ source ~/.config/nvim/plugins.vim
 "}}}
 
 " --- color setting --- {{{
+set background=dark
+colorscheme gruvbox
+
 if exists("&termguicolors") && exists("&winblend")
-  let g:neosolarized_termtrans=1
-  runtime ./colors/gruvbox.vim
   set termguicolors
   set winblend=0
   set wildoptions=pum
@@ -104,19 +119,7 @@ inoremap <C-c> <DEL>
 inoremap <C-w> <C-\><C-o>db
 inoremap <C-r> <C-\><C-o>de
 inoremap <C-f> <C-y>
-inoremap <C-i>s <Esc>[s1z=`]a
-inoremap <C-i>i <Esc>I
-inoremap <C-i>a <Esc>A
-inoremap <C-i>d <Esc>dd<BS>A
-inoremap <C-i>h <Esc>HI
-inoremap <C-i>l <Esc>LI
-inoremap <C-i>m <Esc>MI
-inoremap <C-i>p <Esc>pi
-inoremap <C-i>y <Esc>yyi
-inoremap <C-i>w <Esc>diwi
-inoremap <C-i>y <Esc>yyi
-inoremap <C-i>w <Esc>diwi
-inoremap <C-i>u <Esc>ui
+inoremap <C-i> <C-y>
 "}}}
 
 " --- vnoremap --- {{{
@@ -147,6 +150,7 @@ cnoremap <C-c> <Del>
 command! Rmt :%s/\s\+$//e
 command! M :SignatureListGlobalMarks
 match errorMsg /\s\+$/
+nnoremap <silent> <Leader>o :set spell!<CR>
 "}}}
 
 " --- tabline --- {{{
@@ -191,8 +195,13 @@ nnoremap <C-w>c :tabnew<CR>
 "}}}
 
 " --- statusline --- {{{
+
+set noshowmode
+set noruler
+set laststatus=0
+set noshowcmd
 let &statusline=':%n %f %q %y'
-let s:hidden_all = 0
+let s:hidden_all = 1
 function! ToggleHiddenAll()
   if s:hidden_all  == 0
     let s:hidden_all = 1
@@ -223,18 +232,6 @@ endfunction
 nnoremap <script> <silent> <Leader>q :call ToggleQuickfix()<CR>
 "}}}
 
-" --- spell check --- {{{
-function! ToggleSpellCheck()
-  set spell!
-  if &spell
-    echo "Spellcheck ON"
-  else
-    echo "Spellcheck OFF"
-  endif
-endfunction
-nnoremap <silent> <Leader>o :call ToggleSpellCheck()<CR>
-"}}}
-
 " --- netrw gx --- {{{
 if !exists("g:netrw_nogx")
  if maparg('gx','n') == ""
@@ -255,15 +252,5 @@ if exists("g:netrw_usetab") && g:netrw_usetab
   nmap <unique> <c-tab> <Plug>NetrwShrink
  endif
  nno <silent> <Plug>NetrwShrink :call netrw#Shrink()<cr>
-endif
-"}}}
-
-" --- tmux entry --- {{{
-if $TMUX != ""
-  augroup TMUXWINR
-    autocmd!
-    autocmd VimEnter * call system("tmux rename-window " . "'[vim] " . fnamemodify(getcwd(), ':t') . "'")
-    autocmd VimLeave * call system("tmux rename-window zsh")
-  augroup END
 endif
 "}}}

@@ -6,6 +6,7 @@
   "explorer.icon.enableVimDevicons": false,
   "explorer.floating.border.enable": false,
   "tabnine.priority": 90,
+  "tslint.autoFixOnSave": true,
   "tsserver.trace.server": "verbose",
   "tsserver.enableJavascript": false,
   "coc.preferences.extensionUpdateCheck": "daily",

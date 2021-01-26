@@ -30,4 +30,5 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 
-[ -d ~/.anyenv/bin ] && export PATH=$HOME/.anyenv/bin:$PATH
+# asdf
+source /usr/local/opt/asdf/asdf.sh

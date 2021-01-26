@@ -55,6 +55,7 @@ let s:gb.faded_orange   = ['#af3a03', 130]
 let s:vim_bg = ['bg', 'bg']
 let s:vim_fg = ['fg', 'fg']
 let s:none = ['NONE', 'NONE']
+let s:bg = s:gb.dark0_soft
 let s:bg0  = s:gb.dark0_hard
 let s:bg1  = s:gb.dark1
 let s:bg2  = s:gb.dark2
@@ -151,7 +152,6 @@ function! s:HL(group, fg, ...) " Arguments: group, guifg, guibg, gui, guisp
 endfunction
 
 " Version_700: {{{
-call s:HL('CursorLine',   s:none, s:bg1)
 hi! link CursorColumn CursorLine
 " call s:HL('TabLineFill', s:red, s:bg1, s:invert_tabline)
 " call s:HL('TabLineS]@#el', s:red, s:bg1, s:invert_tabline)
@@ -169,6 +169,7 @@ call s:HL('PmenuThumb', s:none, s:bg4)
 " Version_703: {{{
 call s:HL('ColorColumn',  s:none, s:color_column)
 call s:HL('Conceal', s:blue, s:none)
+call s:HL('CursorLine',   s:none, s:bg)
 call s:HL('CursorLineNr', s:yellow, s:bg1)
 " }}}
 

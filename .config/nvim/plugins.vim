@@ -77,141 +77,72 @@ function! s:show_documentation()
   endif
 endfunction
 "}}}
-Plug 'junegunn/limelight.vim', { 'on': [ 'Limelight', 'Limelight!', 'Limelight!!' ] }
-" junegunn/limelight.vim {{{
-nnoremap <silent> <Leader>m :Limelight!!<CR>
-"}}}
-Plug 'junegunn/vim-easy-align'
-" junegunn/vim-easy-align {{{
-" =の代わりに使えるその他
-" コマンド	説明
-" =	一致した一つ目の=を基準に整列させる
-" 2=	一致した二つ目の=を基準に整列させる
-" *=	一致した全ての=を基準に整列させる
-" **=	一致した全ての=を基準に左右交互に整列させる
-" Enter	整列させる位置を（左/ 右/ 中央）で切り替える
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)"}}}
-Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale', { 'on': [ 'ALEEnable', 'ALEEnableBuffer' ] }
 " dense-analysis/ale {{{
+" let g:ale_sign_info = ''
+" let g:ale_sign_error = ''
+" let g:ale_sign_warning = ''
+" let g:ale_sign_priority = 4
+" let g:ale_open_list = 0
+" let g:ale_echo_msg_format = '%severity% [%linter%] (%code%) - %s'
+" let g:ale_echo_msg_info_str = ''
+" let g:ale_echo_msg_error_str = ''
+" let g:ale_echo_msg_warning_str = ''
+" let g:ale_writegood_options = '--no-passive'
+" let g:ale_virtualtext_cursor = 1
+" let g:ale_virtualtext_prefix = ' '
 
-let g:ale_sign_info = ''
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_sign_priority = 4
-let g:ale_open_list = 0
-let g:ale_echo_msg_format = '%severity% [%linter%] (%code%) - %s'
-let g:ale_echo_msg_info_str = ''
-let g:ale_echo_msg_error_str = ''
-let g:ale_echo_msg_warning_str = ''
-let g:ale_writegood_options = '--no-passive'
-let g:ale_virtualtext_cursor = 1
-let g:ale_virtualtext_prefix = ' '
+" let g:ale_linters = {
+"   \   'asciidoc': ['vale'],
+"   \   'markdown': ['markdownlint', 'vale'],
+"   \   'dockerfile': ['dockerfile_lint'],
+"   \   'go': ['gofmt', 'golint', 'go vet', 'golangserver'],
+"   \   'plaintex': ['proselint', 'chktex', 'lacheck'],
+"   \   'help': [],
+"   \   'python': ['flake8', 'pylint', 'pyright'],
+"   \   'ruby': ['solargraph', 'rubocop', 'ruby'],
+"   \   'groovy': ['android'],
+"   \   'xml': ['android'],
+"   \   'javascript': ['eslint'],
+"   \   'text': ['proselint', 'write-good'],
+"   \   'vim': ['vint'],
+"   \   'yaml': ['yamllint'],
+"   \   'mail': ['proselint', 'write-good']
+" \}
 
-let g:ale_fixers = {
-  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \   'bib': ['bibclean'],
-  \   'python': ['yapf'],
-  \   'openapi': ['prettier'],
-  \   'yaml': ['prettier'],
-  \   'ruby': ['rubocop'],
-  \   'kotlin': ['ktlint']
-\}
-  " \   'markdown': ['proselint'],
+" function ALELSPMappings()
+"   for linter in ale#linter#Get(&filetype)
+"     if !empty(linter.lsp) && ale#lsp_linter#CheckWithLSP(bufnr(''), linter)
+"       nnoremap <buffer> gk :ALEDocumentation<cr>
+"       " nnoremap <buffer> gr :ALEFindReferences<cr>
+"       nnoremap <buffer> gd :ALEGoToDefinition<cr>
+"       nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
+"       nnoremap <buffer> gh :ALEHover<cr>
+"       setlocal omnifunc=ale#completion#OmniFunc
+"     endif
+"   endfor
+" endfunction
 
-let g:ale_linters = {
-  \   'asciidoc': ['vale'],
-  \   'markdown': ['markdownlint', 'vale'],
-  \   'dockerfile': ['dockerfile_lint'],
-  \   'bib': ['bibclean'],
-  \   'go': ['gofmt', 'golint', 'go vet', 'golangserver'],
-  \   'latex': ['proselint', 'chktex', 'lacheck'],
-  \   'tex': ['proselint', 'chktex', 'lacheck'],
-  \   'plaintex': ['proselint', 'chktex', 'lacheck'],
-  \   'help': [],
-  \   'python': ['flake8', 'pylint', 'pyright'],
-  \   'ruby': ['solargraph', 'rubocop', 'ruby'],
-  \   'groovy': ['android'],
-  \   'xml': ['android'],
-  \   'java': ['android', 'checkstyle', 'javalsp'],
-  \   'kotlin': ['ktlint', 'languageserver'],
-  \   'javascript': ['eslint'],
-  \   'text': ['proselint', 'write-good'],
-  \   'vim': ['vint'],
-  \   'yaml': ['yamllint'],
-  \   'openapi': ['yamllint', 'ibm-validator'],
-  \   'mail': ['proselint', 'write-good']
-\}
-
-let g:ale_pattern_options = {
-\   '.gitlab-ci\.yml$': {
-\       'ale_linters': ['gitlablint', 'yamllint'],
-\   },
-\}
-
-let g:ale_linter_aliases = {
-      \ 'asciidoctor': 'asciidoc'
-      \}
-
-let g:ale_kotlin_languageserver_executable = '/home/ryujin/Apps/KotlinLanguageServer/server/build/install/server/bin/kotlin-language-server'
-let g:ale_java_javalsp_executable = '/home/ryujin/Apps/java-language-server/dist/lang_server_linux.sh'
-let g:ale_sh_bashate_options = '-i E003 --max-lin-length 100'
-let g:ale_reason_ls_executable = '/home/ryujin/Apps/rls-linux/reason-language-server'
-
-let g:ale_java_eclipselsp_path = '/home/ryujin/Apps/eclipse.jdt.ls'
-
-function ALELSPMappings()
-  for linter in ale#linter#Get(&filetype)
-    if !empty(linter.lsp) && ale#lsp_linter#CheckWithLSP(bufnr(''), linter)
-      nnoremap <buffer> gk :ALEDocumentation<cr>
-      " nnoremap <buffer> gr :ALEFindReferences<cr>
-      nnoremap <buffer> gd :ALEGoToDefinition<cr>
-      nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
-      nnoremap <buffer> gh :ALEHover<cr>
-      setlocal omnifunc=ale#completion#OmniFunc
-    endif
-  endfor
-endfunction
-
-augroup ALEMappings
-  autocmd BufRead,FileType * call ALELSPMappings()
-augroup END
-"}}}
-Plug 'Yggdroot/indentLine'
-" Yggdroot/indentLine {{{
-let g:indentLine_faster = 1
-let g:indentLine_char_list = ['¦', '┆', '┊']
-"}}}
-Plug 'simeji/winresizer', { 'on': [ 'WinResizerStartFocus', 'WinResizerStartResize'] }
-" simeji/winresizer {{{
-let g:winresizer_start_key = 'ge'
-nnoremap <silent> ge :WinResizerStartResize<CR>
-"}}}
-Plug 'tpope/vim-fugitive'
-Plug 'unblevable/quick-scope'
-" unblevable/quick-scope {{{j
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" augroup ALEMappings
+"   autocmd BufRead,FileType * call ALELSPMappings()
+" augroup END
 "}}}
 Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
 " tpope/vim-commentary {{{
 vnoremap <silent> gc :Commentary<CR>
 "}}}
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
 " mhinz/vim-grepper {{{
 nnoremap <silent>gr :Grepper<CR>
 nnoremap gp :Grepper-
 nnoremap gc :Grepper-cd<CR>
 nnoremap gb :Grepper-buffer<CR>
 "}}}
-Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
 " liuchengxu/vista.vim {{{
 nnoremap <Leader>v :Vista!!<CR>
 let g:vista_sidebar_width = 60
 let g:vista_default_executive = 'coc'
-"}}}
-Plug 'kshenoy/vim-signature'
-" kshenoy/vim-signature {{{
-nnoremap <silent>gm :SignatureListGlobalMarks<CR>
 "}}}
 Plug 'stefandtw/quickfix-reflector.vim', { 'for': 'qf' }
 " stefandtw/quickfix-reflector.vim {{{
@@ -226,26 +157,57 @@ nnoremap <silent> s :<c-u>WhichKey 's'<CR>
 nnoremap <silent> c :<c-u>WhichKey 'c'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 "}}}
-Plug 't9md/vim-quickhl'
+Plug 't9md/vim-quickhl', { 'on': 'QuickhlCwordToggle' }
 " t9md/vim-quickhl {{{
-nmap <Leader>h <Plug>(quickhl-manual-this)
-xmap <Leader>h <Plug>(quickhl-manual-this)
-nmap <Leader>H <Plug>(quickhl-manual-reset)
-xmap <Leader>H <Plug>(quickhl-manual-reset)
+nnoremap <Leader>k :QuickhlCwordToggle<CR>
+nmap <Leader>h <plug>(quickhl-manual-this)
+xmap <Leader>h <plug>(quickhl-manual-this)
+nmap <Leader>H <plug>(quickhl-manual-reset)
+xmap <Leader>H <plug>(quickhl-manual-reset)
 "}}}
-Plug 'airblade/vim-rooter'
+Plug 'junegunn/limelight.vim', { 'on': [ 'Limelight', 'Limelight!', 'Limelight!!' ] }
+" junegunn/limelight.vim {{{
+nnoremap <silent> <Leader>m :Limelight!!<CR>
+"}}}
+Plug 'simeji/winresizer', { 'on': [ 'WinResizerStartFocus', 'WinResizerStartResize'] }
+" simeji/winresizer {{{
+let g:winresizer_start_key = 'ge'
+nnoremap <silent> ge :WinResizerStartResize<CR>
+"}}}
+Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
+" junegunn/vim-easy-align {{{
+" =の代わりに使えるその他
+" コマンド	説明
+" =	一致した一つ目の=を基準に整列させる
+" 2=	一致した二つ目の=を基準に整列させる
+" *=	一致した全ての=を基準に整列させる
+" **=	一致した全ての=を基準に左右交互に整列させる
+" Enter	整列させる位置を（左/ 右/ 中央）で切り替える
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+"}}}
+Plug 'kshenoy/vim-signature', { 'on': 'M' }
+" kshenoy/vim-signature {{{
+nnoremap <silent>gm :SignatureListGlobalMarks<CR>
+"}}}
+Plug 'Yggdroot/indentLine'
+" Yggdroot/indentLine {{{
+let g:indentLine_faster = 1
+let g:indentLine_char_list = ['¦', '┆', '┊']
+"}}}
+Plug 'unblevable/quick-scope'
+" unblevable/quick-scope {{{
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"}}}
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'yuratomo/w3m.vim', { 'on': 'W3m' }
+Plug 'airblade/vim-rooter'
+Plug 'tpope/vim-fugitive', { 'on': 'G' }
 Plug 'guns/xterm-color-table.vim', { 'on': 'XtermColorTable' }
 Plug 'cocopon/colorswatch.vim', { 'on': 'ColorSwatchGenerate' }
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-" iamcco/mathjax-support-for-mkdp {{{
-let g:mkdp_echo_preview_url = 1
-let g:mkdp_auto_close=0
-let g:mkdp_refresh_slow=1
-"}}}
+Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+" language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 " fatih/vim-go {{{
 let g:go_fmt_command = "gofmt"
@@ -257,12 +219,20 @@ let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 "}}}
-Plug 'rust-lang/rust.vim', { 'for': 'rust'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+" iamcco/mathjax-support-for-mkdp {{{
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_auto_close=0
+let g:mkdp_refresh_slow=1
+"}}}
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'jparise/vim-graphql', { 'for': 'graphql' }
 Plug 'tbastos/vim-lua', { 'for': 'lua' }
-Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 " not usually {{{
+" Plug 'luochen1990/rainbow'
+" Plug 'dstein64/nvim-scrollview'
 " Plug 'towolf/vim-helm', { 'for': 'helm' }
 " Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 " Plug 'scrooloose/vim-slumlord', { 'for': 'uml' }
@@ -297,7 +267,6 @@ Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 " Plug 'vim-scripts/dbext.vim'
 " Plug 'tpope/vim-dadbod'
 " Plug 'joshdick/onedark.vim'
-" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
 " Plug 'voldikss/vim-translator'
 "" voldikss/vim-translator {{{

@@ -33,7 +33,6 @@ zinit light zsh-users/zsh-history-substring-search
 zinit light zdharma/history-search-multi-word
 zinit ice wait'!0'; zinit load zsh-users/zsh-syntax-highlighting
 zinit ice wait'!0'; zinit load zsh-users/zsh-completions
-[ -f ~/.anyenv/bin/anyenv ] && eval "$(anyenv init - zsh)"
 
 # prompt
 autoload -Uz vcs_info
