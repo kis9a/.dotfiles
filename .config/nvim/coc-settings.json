@@ -27,12 +27,21 @@
   "diagnostic-languageserver.formatters": {
     "clang-format": {
       "command": "clang-format"
+    },
+    "vint": {
+      "command": "vint"
+    },
+    "gofmt": {
+      "command": "gofmt",
+      "args": ["-w", "-"]
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
     "vim": "vint",
     "lua": "lua-format",
     "sh": "shfmt",
-    "c": "clang-format"
+    "c": "clang-format",
+    "cpp": "clang-format",
+    "go": "gofmt"
   }
 }

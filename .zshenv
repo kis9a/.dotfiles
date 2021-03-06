@@ -31,3 +31,4 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+# export PATH=/usr/local/Cellar/openresty/1.19.3.1_1/nginx/sbin:$PATH

@@ -40,6 +40,7 @@ alias ffmov2mp4='ls *.mov | fzf -m --prompt="twmov2mp4" | xargs -I {} ffmpeg -y 
 alias ffgif2mp4='ls *.gif | fzf -m --prompt="gif2mp4" | xargs -I {} ffmpeg -y -i {} -vf scale="720:trunc(ow/a/2)*2" {}.mp4'
 
 alias pp=pbpaste
+alias mpn='curl -sL https://ppng.io/kis9a'
 alias mem="top -l 1 | grep Mem"
 alias memr="sudo purge"
 alias path='echo $PATH | tr ":" "\n"'

@@ -23,6 +23,22 @@ tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 let g:fzf_preview_window = []
 let g:fzf_layout = {  'window': { 'yoffset': 0.05 , 'width': 1, 'height': 0.4, 'border': 'rounded' } }
 let g:fzf_buffers_jump = 1
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 "}}}
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " neoclide/coc.nvim {{{
@@ -48,24 +64,8 @@ let g:coc_global_extensions = [
       \, 'coc-clangd'
       \, ]
 
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-
 nnoremap <silent><C-n> :CocCommand explorer --sources=file+ --width=55<CR>
-nnoremap <silent><C-y> :CocCommand explorer --sources=buffer+,file+ --position=floating --floating-width=10000 --floating-height=10000<CR>
+nnoremap <silent><C-w>n :CocCommand explorer --sources=buffer+,file+ --position=floating --floating-width=10000 --floating-height=10000<CR>
 nnoremap <silent>s: :CocCommand<CR>
 nnoremap <silent>s; :<C-u>CocList<cr>
 nnoremap <silent>K :call <SID>show_documentation()<CR>
@@ -140,6 +140,34 @@ Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'wakatime/vim-wakatime'
 " not usually {{{
+" Plug 'thinca/vim-quickrun', { 'on': 'QuickRun' }
+" thinca/vim-quickrun"{{{
+" nnoremap sa :QuickRun<CR>
+
+" let g:quickrun_config.go = {
+"       \   'command': 'go',
+"       \   'exec': '%c run *.go %a',
+"       \   'tempfile': '%{tempname()}.go',
+"       \   'hook/output_encode/encoding': 'utf-8',
+"       \   'hook/cd/directory': '%S:p:h',
+"       \ }
+
+" let g:quickrun_config.c = {
+" 			\'type':'c/clang',
+" 			\}
+
+" let g:quickrun_config.cpp = {
+" 			\'type':'cpp/clang++',
+" 			\}
+
+" let g:quickrun_config.javascript = {
+" 			\'type':'javascript/nodejs',
+" 			\}
+
+" let g:quickrun_config.lua = {
+" 			\'command':'lua',
+" 			\}
+"}}}
 " Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 " Plug 't9md/vim-quickhl', { 'on': 'QuickhlCwordToggle' }
 " t9md/vim-quickhl {{{
@@ -320,33 +348,6 @@ Plug 'wakatime/vim-wakatime'
 " Plug 'reedes/vim-wordy'
 " Plug 'rhysd/vim-grammarous'
 " Plug 'thinca/vim-quickrun'
-" Plug 'thinca/vim-quickrun', { 'on': 'QuickRun' }
-" thinca/vim-quickrun"{{{
-" nnoremap sa :QuickRun<CR>
-
-" let g:quickrun_config = {
-" \  'go': {
-" \    'command': '8g',
-" \    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
-" \  }
-" \}
-
-" let g:quickrun_config.c = {
-" 			\'type':'c/clang',
-" 			\}
-
-" let g:quickrun_config.cpp = {
-" 			\'type':'cpp/clang++',
-" 			\}
-
-" let g:quickrun_config.javascript = {
-" 			\'type':'javascript/nodejs',
-" 			\}
-
-" let g:quickrun_config.lua = {
-" 			\'command':'lua',
-" 			\}
-"}}}
 " Plug 'tyru/open-browser.vim'
 " Plug 'SirVer/ultisnips'
 " Plug 'embear/vim-localvimrc'

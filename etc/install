@@ -3,13 +3,11 @@
 # retrieves the name of the running platform
 export PLATFORM
 
-
 # stop to use because required bash version 5
 # source <(curl -s https://raw.githubusercontent.com/kis9a/dotfiles/master/etc/utiles/general.sh)
 # source <(curl -s https://raw.githubusercontent.com/kis9a/dotfiles/master/etc/utiles/ostype.sh)
 # source <(curl -s https://raw.githubusercontent.com/kis9a/dotfiles/master/etc/utiles/logging.sh)
 # source <(curl -s https://raw.githubusercontent.com/kis9a/dotfiles/master/etc/utiles/message.sh)
-
 
 # Utiles
 
@@ -97,7 +95,6 @@ alias is_num=is_number
 echon() {
 	echo "$*" | tr -d '\n'
 }
-
 
 ink() {
 	if [ "$#" -eq 0 -o "$#" -gt 2 ]; then
@@ -193,7 +190,6 @@ log_info() {
 log_echo() {
 	logging TITLE "$1"
 }
-
 
 e_newline() {
 	printf "\n"
@@ -318,7 +314,6 @@ upper() {
 	fi | tr "[:lower:]" "[:upper:]"
 }
 
-
 # Dotfiles {{{1
 
 # Set DOTPATH as default variable
@@ -416,7 +411,7 @@ dotfiles_initialize() {
 			exit 1
 		fi
 	fi &&
-	e_newline && e_done "Initialize"
+		e_newline && e_done "Initialize"
 }
 
 # A script for the file named "install"

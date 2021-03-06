@@ -166,8 +166,8 @@ call s:HL('TabLineFill', s:bg4, s:bg1, s:bold)
 " call s:HL('TabLineSel', s:orange, s:bg1, s:underline)
 " call s:HL('TabLineDir', s:red0, s:bg1, s:underline)
 " call s:HL('TabLineSel', s:red, s:bg1, s:invert_tabline)
-call s:HL('TabLineSel', s:red0, s:bg1, s:invert_tabline)
-call s:HL('TabLineDir', s:red0, s:bg1, s:invert_tabline)
+call s:HL('TabLineSel', s:red, s:bg1, s:invert_tabline)
+call s:HL('TabLineDir', s:red, s:bg1, s:invert_tabline)
 hi! link TabLine TabLineFill
 call s:HL('MatchParen', s:none, s:bg3, s:bold)
 call s:HL('Pmenu', s:fg1, s:bg2)
@@ -206,7 +206,7 @@ hi! link ALEInfoSign GruvboxBlueSign
 hi! link NonText GruvboxBg2
 hi! link SpecialKey GruvboxBg2
 hi! link VisualNOS Visual
-hi! link Directory GruvboxOrangeBold
+hi! link Directory GruvboxFg3
 hi! link Title GruvboxGreenBold
 hi! link MoreMsg GruvboxYellowBold
 hi! link ModeMsg GruvboxYellowBold
@@ -296,7 +296,7 @@ call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
 call s:HL('Search',    s:yellow, s:bg0, s:inverse)
 call s:HL('IncSearch', s:hls_cursor, s:bg0, s:inverse)
 call s:HL('Underlined', s:blue, s:none, s:underline)
-call s:HL('StatusLine',   s:bg0, s:red0, s:inverse)
+call s:HL('StatusLine',   s:bg0, s:red, s:inverse)
 call s:HL('StatusLineNC', s:bg1, s:fg4, s:inverse)
 " call s:HL('VertSplit', s:bg3, s:vert_split)
 call s:HL('VertSplit', s:bg0, s:vert_split)

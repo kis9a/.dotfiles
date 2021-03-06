@@ -197,7 +197,6 @@ nnoremap ,12 12gt
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-w>d :tabclose<CR>
-nnoremap <C-w>n :tab split<CR>
 nnoremap <C-w>c :tabnew<CR>
 "}}}
 
@@ -261,3 +260,8 @@ if exists("g:netrw_usetab") && g:netrw_usetab
  nno <silent> <Plug>NetrwShrink :call netrw#Shrink()<cr>
 endif
 "}}}
+
+" ---- ppng  --- {{{
+vnoremap mpr :!curl -T - https://ppng.io/kis9a<CR>u
+nnoremap mpn :r! curl -sL https://ppng.io/kis9a<CR>
+" }}}
